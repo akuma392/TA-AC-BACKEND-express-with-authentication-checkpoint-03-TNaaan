@@ -9,6 +9,9 @@
   "author": "AltCampus",
   "license": "GNU GPL V3",
   "dependencies": {
-    "jest": "^26.0.1"
+    "bcrypt": "^5.0.1",
+    "install": "^0.13.0",
+    "jest": "^26.0.1",
+    "mongoose": "^5.12.2"
   }
 }
