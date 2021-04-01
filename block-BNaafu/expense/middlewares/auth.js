@@ -12,14 +12,18 @@ module.exports = {
     var userId = req.session && req.session.userId;
     var userpassport = req.session && req.session.passport;
     if (userId) {
-      User.findById(userId, 'name email', (err, user) => {
-        if (err) return next(err);
-        if (!req.session.passport) {
-          req.user = user;
+      User.findById(
+        userId,
+        'name email age country avatar phone otp',
+        (err, user) => {
+          if (err) return next(err);
+          if (!req.session.passport) {
+            req.user = user;
+          }
+          res.locals.user = user;
+          next();
         }
-        res.locals.user = user;
-        next();
-      });
+      );
     } else if (userpassport) {
       let id = req.session.passport.user;
       User.findById(id, (err, user) => {

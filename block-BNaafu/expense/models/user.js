@@ -9,6 +9,11 @@ var userSchema = new Schema(
     email: { type: String, unique: true },
     password: { type: String, minlength: 5 },
     age: { type: Number, default: 18 },
+    phone: Number,
+    country: String,
+    isEmailVerified: { type: Boolean, default: false },
+    avatar: String,
+    otp: Number,
   },
   { timestamps: true }
 );

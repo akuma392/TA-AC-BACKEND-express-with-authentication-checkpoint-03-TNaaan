@@ -1,0 +1,34 @@
+<%- include('partials/header') -%>
+
+<main class="article-main">
+  <section>
+    <h1>Add income</h1>
+  </section>
+  <form id="create-article" action="/expense/income/new" method="POST">
+    <div class="form-control">
+      <label for="">Source</label>
+      <select name="source" id="">
+        <option value="business">business</option>
+        <option value="job">Job</option>
+        <option value="parttime">part time</option>
+        <option value="other">other income</option>
+      </select>
+    </div>
+
+    <div class="form-control">
+      <label for="text">Amount</label>
+      <input type="number" name="amount" placeholder="add amount " />
+    </div>
+    <div class="form-control">
+      <label for="text">Date</label>
+      <input type="date" name="date" placeholder="add date " />
+    </div>
+    <div class="form-control">
+      <label for="text">description</label>
+      <input type="text" name="description" placeholder="add description " />
+    </div>
+
+    <button type="submit">Create</button>
+  </form>
+</main>
+<%- include('partials/footer') -%>
