@@ -1,0 +1,82 @@
+<%- include('partials/header') -%>
+
+<main class="home-index">
+  <div id="container">
+    <section>
+      <h1>Update profile</h1>
+    </section>
+
+    <form action="/users/update" method="POST">
+      <div class="form-control">
+        <label for="text"> Name</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="enter your name"
+          value="<%= user.name%>"
+        />
+      </div>
+      <div class="form-control">
+        <label for="text">Email</label>
+        <input
+          id="text"
+          type="email"
+          name="email"
+          placeholder="arya@stark.com"
+          value="<%= user.email%>"
+        />
+      </div>
+
+      <!-- <div class="form-control">
+        <label for="text">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+        />
+      </div> -->
+      <div class="form-control">
+        <label for="text">Age</label>
+        <input
+          id="password"
+          type="number"
+          name="age"
+          placeholder="Enter your age"
+          value="<%= user.age%>"
+        />
+      </div>
+      <div class="form-control">
+        <label for="text">phone</label>
+        <input
+          id="password"
+          type="number"
+          name="phone"
+          placeholder="Enter your phone"
+          value="<%= user.phone%>"
+        />
+      </div>
+      <div class="form-control">
+        <label for="text">Country</label>
+        <input
+          id="password"
+          type="text"
+          name="country"
+          placeholder="Enter your country"
+          value="<%= user.country%>"
+        />
+      </div>
+      <!-- <div class="form-control">
+        <label for="text">Membership</label>
+        <select name="category" id="">
+          <option value="free">free</option>
+          <option value="vip">vip</option>
+          <option value="premium">premium</option>
+        </select>
+      </div> -->
+
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</main>
+<%- include('partials/footer') -%>

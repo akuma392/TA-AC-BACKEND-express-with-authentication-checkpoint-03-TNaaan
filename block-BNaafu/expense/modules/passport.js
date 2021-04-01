@@ -17,6 +17,7 @@ passport.use(
         name: profile.displayName,
 
         email: profile._json.email,
+        avatar: profile._json.avatar_url,
       };
 
       console.log(newUser);
@@ -51,6 +52,7 @@ passport.use(
         name: profile.displayName,
 
         email: profile._json.email,
+        avatar: profile._json.picture,
       };
 
       console.log(newUser);

@@ -1,0 +1,57 @@
+<%- include('partials/header') -%>
+
+<main>
+  <section class="profile">
+    <%if(user.avatar) { %> <%if(user.password) { %>
+    <div>
+      <img src="/uploads/<%= user.avatar%>" alt="" />
+    </div>
+    <% }else {%>
+    <div>
+      <img src="<%= user.avatar%>" alt="" />
+    </div>
+    <% }} else {%>
+
+    <div>
+      <img src="/images/prof.png" alt="" />
+    </div>
+    <% }%>
+
+    <p><%= user.name%></p>
+
+    <% if(user.isEmailVerfied) {%>
+    <p class="active"><span>Email is verfied</span></p>
+    <% } else {%>
+    <p class="blocked"><span>Email is not verified</span></p>
+    <% }%>
+    <h6><span><%= %></span></h6>
+    <form action="/users/avatar" method="POST" enctype="multipart/form-data">
+      <label for="">Change profile picture</label>
+      <input type="file" name="avatar" />
+      <button>submit</button>
+    </form>
+  </section>
+
+  <!-- <ul class="index-root user-profile" id="item-root"> -->
+  <ul class="user-profile">
+    <li class="li">
+      <% if(error) {%>
+      <p class="flash"><%= error%></p>
+      <%}%>
+      <form action="/verify/otp" method="POST">
+        <div class="form-control error">
+          <label for="text">OTP</label>
+          <input
+            id="password"
+            type="number"
+            name="otp"
+            placeholder="Enter your otp"
+          />
+        </div>
+
+        <button type="submit">verify</button>
+      </form>
+    </li>
+  </ul>
+</main>
+<%- include('partials/footer') -%>

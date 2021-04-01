@@ -1,0 +1,53 @@
+<%- include('partials/header') -%>
+
+<main class="article-main">
+  <section>
+    <h1>Update Income</h1>
+  </section>
+  <form
+    id="create-article"
+    action="/expense/income/<%=income._id %>/edit"
+    method="POST"
+  >
+    <div class="form-control">
+      <label for="">Source</label>
+      <select name="source" id="">
+        <option value="business">business</option>
+        <option value="job">Job</option>
+        <option value="parttime">part time</option>
+        <option value="other">other income</option>
+      </select>
+    </div>
+
+    <div class="form-control">
+      <label for="text">Amount</label>
+      <input
+        type="number"
+        name="amount"
+        placeholder="add amount "
+        value="<%= income.amount%>"
+      />
+    </div>
+    <div class="form-control">
+      <label for="text">description</label>
+      <input
+        type="text"
+        name="description"
+        placeholder="add summary "
+        value="<%= income.description%>"
+      />
+    </div>
+    <div class="form-control">
+      <label for="text">Date</label>
+      <input
+        type="date"
+        name="date"
+        placeholder="add date "
+        value="<%= income.date%>"
+      />
+    </div>
+
+    <button type="submit">Update</button>
+  </form>
+</main>
+<%- include('partials/footer') -%>
