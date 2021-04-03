@@ -1,0 +1,19 @@
+<%- include('partials/header') -%>
+
+<main class="login-main">
+  <div id="container">
+    <section>
+      <h1>reset your password</h1>
+    </section>
+
+    <form action="/verify/otp/<%= OTP%>" method="POST">
+      <div class="form-control">
+        <label for="text">Otp to reset password</label>
+        <input id="text" type="text" name="otp" placeholder="enter your otp" />
+      </div>
+
+      <button type="submit">enter otp to reset</button>
+    </form>
+  </div>
+</main>
+<%- include('partials/footer') -%>

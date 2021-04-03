@@ -1,0 +1,77 @@
+<%- include('partials/header') -%>
+
+<main>
+  <div class="saving">total saving : <%= income - expense%></div>
+  <li class="category">
+    <h4>Filter incomes</h4>
+    <div>
+      <a href="/expense/date">Filter by date</a>
+    </div>
+
+    <%if(sources.length) { %> <% sources.forEach((source)=>{ %>
+    <div>
+      <a href="/expense/income/<%= source%>"> <%= source%> </a>
+    </div>
+    <% }) } %>
+  </li>
+
+  <li class="category category2">
+    <h4>Filter expense</h4>
+    <%if(categories.length) { %> <% categories.forEach((category)=>{ %>
+    <div>
+      <a href="/expense/<%=category%>"> <%= category%> </a>
+    </div>
+    <% }) } %>
+  </li>
+
+  <h2 class="income">Income details</h2>
+  <ul class="index-root" id="item-root">
+    <%if(incomes.length) { %> <% incomes.forEach((item)=>{ %>
+    <li>
+      <h3><%= item.source%></h3>
+
+      <span><%= item.description%></span>
+
+      <p><%= item.amount%></p>
+
+      <h5><span><%= moment(item.date).format("LLLL")%></span></h5>
+      <nav>
+        <a href="/expense/income/<%= item._id%>/edit">
+          <button class="btn">edit</button>
+        </a>
+        <a href="/expense/income/<%= item._id%>/delete">
+          <button class="btn">delete</button>
+        </a>
+      </nav>
+    </li>
+    <% }) %> <% } else {%>
+    <h2>No incomes available</h2>
+    <% }%>
+  </ul>
+
+  <h2 class="income">Expense details</h2>
+  <ul class="index-root" id="item-root">
+    <%if(expenses.length) { %> <% expenses.forEach((item)=>{ %>
+
+    <li>
+      <h3><%= item.category%></h3>
+      <span><%= item.description%></span>
+
+      <p><%= item.amount%></p>
+
+      <h5><span><%= moment(item.date).format("LLLL")%></span></h5>
+      <nav>
+        <a href="/expense/<%= item._id%>/edit">
+          <button class="btn">edit</button>
+        </a>
+        <a href="/expense/<%= item._id%>/delete">
+          <button class="btn">delete</button>
+        </a>
+      </nav>
+    </li>
+    <% }) %> <% } else {%>
+    <h2>No expenses available</h2>
+    <% }%>
+  </ul>
+</main>
+<%- include('partials/footer') -%>

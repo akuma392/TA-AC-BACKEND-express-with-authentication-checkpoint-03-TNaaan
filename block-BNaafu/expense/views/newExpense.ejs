@@ -1,0 +1,35 @@
+<%- include('partials/header') -%>
+
+<main class="article-main">
+  <section>
+    <h1>Add expense</h1>
+  </section>
+  <form id="create-article" action="/expense/new" method="POST">
+    <div class="form-control">
+      <label for="">category</label>
+      <select name="category" id="">
+        <option value="household">household</option>
+        <option value="medicine">medicine</option>
+        <option value="foods">foods</option>
+        <option value="travels">travels</option>
+        <option value="other">other expense</option>
+      </select>
+    </div>
+
+    <div class="form-control">
+      <label for="text">Amount</label>
+      <input type="number" name="amount" placeholder="add amount " />
+    </div>
+    <div class="form-control">
+      <label for="text">description</label>
+      <input type="text" name="description" placeholder="add description " />
+    </div>
+    <div class="form-control">
+      <label for="text">Date</label>
+      <input type="date" name="date" placeholder="add date " />
+    </div>
+
+    <button type="submit">Create</button>
+  </form>
+</main>
+<%- include('partials/footer') -%>
