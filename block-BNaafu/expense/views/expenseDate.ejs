@@ -1,11 +1,7 @@
 <%- include('partials/header') -%>
 
-<main id="expense-main">
-  <% if(income && expense) {%>
-  <div class="saving">
-    total saving : <%= income.totalIncome - expense.totalExpense%>
-  </div>
-  <%}%>
+<main>
+  <div class="saving">total saving : <%= income - expense%></div>
   <li class="category">
     <h4>Filter incomes</h4>
     <div>

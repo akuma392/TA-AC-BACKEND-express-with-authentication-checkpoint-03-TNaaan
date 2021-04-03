@@ -12,10 +12,173 @@ router.get('/', (req, res, next) => {
     // console.log(err, incomes, 'abhi');
     Expense.find({ owner: userId }, (err, expenses) => {
       if (err) return next(err);
-      res.render('expense', {
-        incomes: incomes,
-        expenses: expenses,
-        moment: moment,
+      Expense.distinct('category', (err, categories) => {
+        if (err) return next(err);
+        Income.distinct('source', (err, sources) => {
+          if (err) return next(err);
+          Income.aggregate([
+            {
+              $match: {
+                owner: req.user._id,
+              },
+            },
+            {
+              $group: {
+                _id: '',
+                totalIncome: { $sum: '$amount' },
+              },
+            },
+          ]).exec((err, incomeResult) => {
+            if (err) return next(err);
+
+            Expense.aggregate([
+              {
+                $match: {
+                  owner: req.user._id,
+                },
+              },
+              {
+                $group: {
+                  _id: '',
+                  totalExpense: { $sum: '$amount' },
+                },
+              },
+            ]).exec((err, expenseResult) => {
+              if (err) return next(err);
+              // console.log(
+              //   err,
+              //   incomeResult[0].totalIncome,
+              //   expenseResult[0].totalExpense,
+              //   'aggregate'
+              // );
+
+              res.render('expense', {
+                incomes: incomes,
+                expenses: expenses,
+                moment: moment,
+                categories: categories,
+                sources: sources,
+                income: incomeResult[0] || null,
+                expense: expenseResult[0] || null,
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+});
+
+router.get('/date', (req, res) => {
+  res.render('filterDate');
+});
+
+router.post('/date', (req, res) => {
+  let from = req.body.from;
+  let to = req.body.to;
+  Expense.aggregate([
+    {
+      $match: {
+        date: { $gte: from },
+      },
+    },
+  ]).exec((err, result) => {
+    console.log(err, result, 'filter by date');
+  });
+});
+router.get('/income/:id', (req, res, next) => {
+  let id = req.params.id;
+  let userId = req.user.id;
+  Income.find({ source: id }, (err, incomes) => {
+    if (err) return next(err);
+
+    Expense.find({ owner: userId }, (err, expenses) => {
+      if (err) return next(err);
+      Expense.distinct('category', (err, categories) => {
+        if (err) return next(err);
+        Income.distinct('source', (err, sources) => {
+          if (err) return next(err);
+          Income.aggregate([
+            {
+              $group: {
+                _id: '',
+                totalIncome: { $sum: '$amount' },
+              },
+            },
+          ]).exec((err, incomeResult) => {
+            if (err) return next(err);
+
+            Expense.aggregate([
+              {
+                $group: {
+                  _id: '',
+                  totalExpense: { $sum: '$amount' },
+                },
+              },
+            ]).exec((err, expenseResult) => {
+              if (err) return next(err);
+
+              res.render('expense', {
+                incomes: incomes,
+                expenses: expenses,
+                moment: moment,
+                categories: categories,
+                sources: sources,
+                income: incomeResult[0] || null,
+                expense: expenseResult[0] || null,
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+});
+
+router.get('/:id', (req, res, next) => {
+  let id = req.params.id;
+  let userId = req.user.id;
+  Income.find({ owner: userId }, (err, incomes) => {
+    if (err) return next(err);
+
+    Expense.find({ category: id }, (err, expenses) => {
+      if (err) return next(err);
+      Expense.distinct('category', (err, categories) => {
+        if (err) return next(err);
+        Income.distinct('source', (err, sources) => {
+          if (err) return next(err);
+          Income.aggregate([
+            {
+              $group: {
+                _id: '',
+                totalIncome: { $sum: '$amount' },
+              },
+            },
+          ]).exec((err, incomeResult) => {
+            if (err) return next(err);
+
+            Expense.aggregate([
+              {
+                $group: {
+                  _id: '',
+                  totalExpense: { $sum: '$amount' },
+                },
+              },
+            ]).exec((err, expenseResult) => {
+              if (err) return next(err);
+
+              res.render('expense', {
+                incomes: incomes,
+                expenses: expenses,
+                moment: moment,
+                categories: categories,
+                sources: sources,
+                income: incomeResult[0] || null,
+                expense: expenseResult[0] || null,
+              });
+            });
+          });
+        });
       });
     });
   });
