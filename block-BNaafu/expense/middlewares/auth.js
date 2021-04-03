@@ -14,7 +14,7 @@ module.exports = {
     if (userId) {
       User.findById(
         userId,
-        'name email age country avatar phone otp',
+        'name email age country avatar phone otp isEmailVerified ',
         (err, user) => {
           if (err) return next(err);
           if (!req.session.passport) {

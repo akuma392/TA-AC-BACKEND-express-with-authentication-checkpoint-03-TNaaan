@@ -1,0 +1,24 @@
+<%- include('partials/header') -%>
+
+<main class="login-main">
+  <div id="container">
+    <section>
+      <h1>reset your password</h1>
+    </section>
+
+    <form action="/reset/password" method="POST">
+      <div class="form-control">
+        <label for="text">Email to reset password</label>
+        <input
+          id="text"
+          type="email"
+          name="newemail"
+          placeholder="enter your email"
+        />
+      </div>
+
+      <button type="submit">send otp to reset</button>
+    </form>
+  </div>
+</main>
+<%- include('partials/footer') -%>

@@ -1,0 +1,23 @@
+<%- include('partials/header') -%>
+
+<main class="login-main">
+  <div id="container">
+    <section>
+      <h1>Filter by Date</h1>
+    </section>
+
+    <form action="/expense/date" method="POST">
+      <div class="form-control">
+        <label for="text">from date</label>
+        <input id="text" type="date" name="from" placeholder="from " />
+      </div>
+      <div class="form-control">
+        <label for="text">to date</label>
+        <input id="text" type="date" name="to" placeholder="to date " />
+      </div>
+
+      <button type="submit">filter by date</button>
+    </form>
+  </div>
+</main>
+<%- include('partials/footer') -%>

@@ -817,6 +817,14 @@ main {
   margin-bottom: 1rem;
 }
 
+.category2 {
+  top: 26rem;
+  background-color: rgba(5, 20, 87, 0.8);
+}
+.category2 a:hover {
+  text-decoration: underline;
+  color: rgb(23, 195, 248);
+}
 .cart-btn {
   padding: 0.2rem 0.4rem;
 }
@@ -1047,4 +1055,18 @@ main {
 
 #item-root nav button {
   margin-left: 1rem;
+}
+
+.saving {
+  position: absolute;
+  top: 2.4rem;
+  right: 0;
+  font-weight: 600;
+  color: green;
+  background-color: rgb(206, 190, 190);
+  padding: 1rem;
+}
+
+#expense-main {
+  min-height: 90vh;
 }

@@ -14,14 +14,13 @@ function randomNumber() {
   return OTP;
 }
 
-let randomOTP = randomNumber();
-
 router.get('/', (req, res, next) => {
   console.log(req.user.isEmailVerified, 'ababa');
+  let randomOTP = randomNumber();
   let id = req.user._id;
   req.user.otp = randomOTP;
   User.findByIdAndUpdate(id, req.user, (err, user) => {
-    console.log(user, 'otp');
+    console.log(user, req.user.isEmailVerified, 'otp');
     res.render('home');
   });
 });
